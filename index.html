@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Omogbemi Oluwagbenga Ayobami — Software Engineer</title>
 <meta name="description" content="Personal CV and engineering journey of Omogbemi Oluwagbenga Ayobami — Software Engineer.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https://api.github.com; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=JetBrains+Mono:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
@@ -303,7 +304,19 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding
 #intro .tag{font-size:2.3cqw;font-weight:500}
 #intro .wipe{position:absolute;inset:0;background:var(--i-paper);transform:scaleX(0);pointer-events:none;z-index:5}
 #intro button:hover{background:var(--i-ink);color:var(--i-paper)}
-:focus-visible{outline:3px solid var(--i-cobalt);outline-offset:3px}
+#intro :focus-visible{outline:3px solid var(--i-cobalt);outline-offset:3px}
+
+/* cqw fallback: older browsers without container queries (stage is 100vw, so vw == cqw) */
+@supports not (width: 1cqw){
+  #intro .s1 .mask{font-size:14vw}
+  #intro .s2 .copy .mask{font-size:5vw}
+  #intro .line{font-size:26vw}
+  #intro .mark{width:9vw;height:9vw;font-size:6.6vw;border-radius:1.6vw}
+  #intro .wordmark{font-size:8.4vw}
+  #intro .rule{width:34vw}
+  #intro .tag{font-size:2.3vw}
+  #intro .lockup{gap:2.2vw}
+}
 
 /* scroll progress */
 #progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),#fb923c);z-index:500;transition:width .08s linear}
@@ -421,7 +434,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding
 <nav>
   <div class="container">
     <div class="logo">omogbemi<span>.</span>dev</div>
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#live">Activity</a>
@@ -435,7 +448,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
         Download CV
       </button>
-      <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
@@ -453,7 +466,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding
       </div>
       <div class="eyebrow">Software Engineer · Lagos, Nigeria</div>
       <h1>Omogbemi<br>Oluwagbenga <em>Ayobami</em></h1>
-      <p class="typeline"><span id="typed">I build useful things for the web — and I keep an honest record of the journey: every project, every skill, every step.</span><span class="caret"></span></p>
+      <p class="typeline" aria-label="I build useful things for the web — and I keep an honest record of the journey: every project, every skill, every step."><span id="typed" aria-hidden="true">I build useful things for the web — and I keep an honest record of the journey: every project, every skill, every step.</span><span class="caret" aria-hidden="true"></span></p>
       <div class="hero-cta" style="justify-content:center">
         <a href="#projects" class="btn light">View my work</a>
         <a href="#contact" class="btn outline">Get in touch</a>
@@ -593,13 +606,13 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding
     <div class="eyebrow" style="justify-content:center">07 — Contact</div>
     <h2>Let's build something.</h2>
     <p>Open to junior roles, internships, collaborations, and interesting problems.</p>
-    <a class="btn light" href="mailto:omogbemiayo@gmail.com">omogbemiayo@gmail.com</a>
+    <a class="btn light" href="mailto:omogbemiayo&#64;gmail.com">omogbemiayo&#64;gmail.com</a>
     <div class="socials">
       <!-- EDIT: your real social links (WhatsApp number especially) -->
       <a class="soc" href="https://github.com/shop-websitedemo" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.35.96.11-.75.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.05.78 2.13v3.16c0 .3.21.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>GitHub</a>
       <a class="soc" href="https://linkedin.com" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8h4.6v14H.2V8zm7.5 0h4.4v1.9h.06c.61-1.16 2.1-2.38 4.33-2.38 4.63 0 5.48 3.05 5.48 7.01V22h-4.6v-6.5c0-1.55-.03-3.55-2.16-3.55-2.16 0-2.49 1.69-2.49 3.43V22H7.7V8z"/></svg>LinkedIn</a>
       <a class="soc" href="https://wa.me/2349071497070" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 2.03.53 3.93 1.46 5.58L.5 23.5l6.1-1.4A11.5 11.5 0 1 0 12 .5zm5.35 16.21c-.23.65-1.34 1.24-1.87 1.29-.5.05-1.13.22-3.8-.79-3.2-1.26-5.25-4.54-5.41-4.75-.16-.21-1.3-1.73-1.3-3.3 0-1.57.82-2.34 1.11-2.66.29-.32.63-.4.84-.4h.61c.19 0 .45-.07.7.54.26.63.87 2.17.95 2.33.08.16.13.35.02.56-.1.21-.16.34-.32.53-.16.19-.34.42-.48.56-.16.16-.33.34-.14.66.19.32.83 1.37 1.78 2.22 1.23 1.09 2.26 1.43 2.58 1.59.32.16.5.14.69-.08.19-.21.79-.92 1-1.24.21-.32.42-.26.71-.16.29.11 1.86.88 2.18 1.04.32.16.53.24.61.37.08.14.08.79-.15 1.25z"/></svg>WhatsApp</a>
-      <a class="soc" href="mailto:omogbemiayo@gmail.com"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm10 8.7L3.6 6h16.8L12 12.7zM3 8.1V18h18V8.1l-9 6.6-9-6.6z"/></svg>Email</a>
+      <a class="soc" href="mailto:omogbemiayo&#64;gmail.com"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm10 8.7L3.6 6h16.8L12 12.7zM3 8.1V18h18V8.1l-9 6.6-9-6.6z"/></svg>Email</a>
     </div>
   </div>
 </section>
@@ -725,6 +738,7 @@ if(tlEl){
 (function(){
   const el = document.getElementById('typed');
   const full = el.textContent;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // show full text, no typing
   el.textContent = '';
   let ci = 0;
   (function tick(){
@@ -771,9 +785,37 @@ document.querySelectorAll('[data-count]').forEach(el=>cntIO.observe(el));
 
 /* ============ LIVE GITHUB STATS (auto-tracked, no edits needed) ============ */
 const GH_USER = 'shop-websitedemo';
+const GH_CACHE_TTL = 10 * 60 * 1000;   // serve cached data for 10 min
+const isSafeUrl = u => typeof u === 'string' && /^https?:\/\//i.test(u);
+
+async function ghFetch(path){
+  const key = 'ghc:' + path;
+  let stale = null;
+  try{
+    const hit = localStorage.getItem(key);
+    if(hit){
+      const parsed = JSON.parse(hit);
+      if(Date.now() - parsed.t < GH_CACHE_TTL) return parsed.data;
+      stale = parsed.data;   // keep for offline fallback
+    }
+  }catch(e){}
+  try{
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 8000);   // 8s timeout
+    const res = await fetch('https://api.github.com' + path, {signal: ctrl.signal});
+    clearTimeout(timer);
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    try{ localStorage.setItem(key, JSON.stringify({t: Date.now(), data})); }catch(e){}
+    return data;
+  }catch(err){
+    if(stale) return stale;   // offline / rate-limited: last-known data
+    throw err;
+  }
+}
 const setStat = (id, val) => { const el = document.getElementById(id); if(el) el.textContent = val; };
 
-fetch('https://api.github.com/users/' + GH_USER)
+ghFetch('/users/' + GH_USER)
   .then(r => r.json())
   .then(d => {
     setStat('gh-repos', d.public_repos ?? '–');
@@ -782,7 +824,7 @@ fetch('https://api.github.com/users/' + GH_USER)
   })
   .catch(() => ['gh-repos','gh-followers','gh-since'].forEach(id => setStat(id, 'offline')));
 
-fetch('https://api.github.com/users/' + GH_USER + '/events/public?per_page=60')
+ghFetch('/users/' + GH_USER + '/events/public?per_page=60')
   .then(r => r.json())
   .then(events => {
     if(!Array.isArray(events)) return;
@@ -836,7 +878,7 @@ fetch('https://api.github.com/users/' + GH_USER + '/events/public?per_page=60')
 function renderRow(r, list){
   // live = GitHub Pages site OR a Website link set on the repo (Play Store, App Store, demo...)
   const pagesUrl = r.has_pages ? 'https://' + GH_USER + '.github.io/' + r.name + '/' : null;
-  const live = pagesUrl || (r.homepage || null);
+  const live = pagesUrl || (isSafeUrl(r.homepage) ? r.homepage : null);
   const row = document.createElement('div');
   row.className = 'p-row';
   row.innerHTML =
@@ -860,7 +902,7 @@ function renderRow(r, list){
   list.appendChild(row);
 }
 
-fetch('https://api.github.com/users/' + GH_USER + '/repos?per_page=100&sort=updated')
+ghFetch('/users/' + GH_USER + '/repos?per_page=100&sort=updated')
   .then(r => r.json())
   .then(repos => {
     if(!Array.isArray(repos)) return;
@@ -881,14 +923,13 @@ fetch('https://api.github.com/users/' + GH_USER + '/repos?per_page=100&sort=upda
 /* Mobile menu */
 const menuBtn = document.getElementById('menuBtn');
 const navLinks = document.querySelector('.nav-links');
-menuBtn.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-  menuBtn.classList.toggle('open');
-});
-navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  navLinks.classList.remove('open');
-  menuBtn.classList.remove('open');
-}));
+function setMenu(open){
+  navLinks.classList.toggle('open', open);
+  menuBtn.classList.toggle('open', open);
+  menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+menuBtn.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 
 /* Back-to-top button */
 const topBtn = document.getElementById('top');
