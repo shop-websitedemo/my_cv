@@ -293,7 +293,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding
 <!-- ================= LIVE GITHUB (auto-tracked) ================= -->
 <section id="live">
   <div class="container">
-    <div class="sec-head reveal"><div class="eyebrow">03 — Live from GitHub</div><h2>Real activity, auto-tracked</h2><p>Pulled straight from my GitHub account — updates itself every time the page loads. No code edits, ever.</p></div>
+    <div class="sec-head reveal"><div class="eyebrow">03 — Live from GitHub</div><h2>Real activity, auto-tracked</h2><p>Pulled straight from my GitHub account — updates itself every time the page loads. Repos with a live site get a "Visit live site" button automatically.</p></div>
     <div class="about-facts" style="grid-template-columns:repeat(4,1fr)">
       <div class="fact reveal"><div class="num" id="gh-repos">–</div><div class="lbl">Public Repos</div></div>
       <div class="fact reveal d1"><div class="num" id="gh-followers">–</div><div class="lbl">Followers</div></div>
@@ -482,12 +482,13 @@ fetch('https://api.github.com/users/' + GH_USER + '/repos?per_page=100&sort=upda
       card.className = 'proj';
       const d = new Date(r.updated_at);
       const when = d.toLocaleDateString('en-GB', {month:'short', year:'numeric'});
+      const live = r.has_pages ? 'https://' + GH_USER + '.github.io/' + r.name + '/' : null;
       card.innerHTML =
         '<span class="tag">GitHub · updated ' + when + '</span>' +
         '<h3></h3>' +
         '<p></p>' +
         '<div class="chips"></div>' +
-        '<a class="plink" target="_blank" rel="noopener">View repo →</a>';
+        '<div class="plinks" style="display:flex;gap:18px;flex-wrap:wrap"></div>';
       card.querySelector('h3').textContent = r.name;
       card.querySelector('p').textContent = r.description || 'No description yet — a work in progress.';
       if(r.language){
@@ -495,8 +496,17 @@ fetch('https://api.github.com/users/' + GH_USER + '/repos?per_page=100&sort=upda
         c.className = 'chip'; c.textContent = r.language;
         card.querySelector('.chips').appendChild(c);
       }
-      const a = card.querySelector('a');
-      a.href = r.html_url;
+      const links = card.querySelector('.plinks');
+      const repoLink = document.createElement('a');
+      repoLink.className = 'plink'; repoLink.target = '_blank'; repoLink.rel = 'noopener';
+      repoLink.href = r.html_url; repoLink.textContent = 'View repo →';
+      links.appendChild(repoLink);
+      if(live){
+        const liveLink = document.createElement('a');
+        liveLink.className = 'plink'; liveLink.target = '_blank'; liveLink.rel = 'noopener';
+        liveLink.href = live; liveLink.textContent = '● Visit live site →';
+        links.appendChild(liveLink);
+      }
       grid.appendChild(card);
     });
   })
