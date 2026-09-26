@@ -52,35 +52,40 @@ nav .container{display:flex;align-items:center;justify-content:space-between;hei
 .btn.ghost{background:transparent;color:var(--ink)}
 .btn.ghost:hover{background:var(--ink);color:#fff}
 .btn svg{width:16px;height:16px}
-@media(max-width:820px){.nav-links{display:none}}
+.menu-btn{display:none;background:none;border:none;cursor:pointer;padding:10px}
+.menu-btn span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;transition:transform .3s,opacity .3s}
+.menu-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn.open span:nth-child(2){opacity:0}
+.menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:820px){
+  .menu-btn{display:block}
+  .nav-links{position:fixed;top:64px;left:0;right:0;display:flex;flex-direction:column;background:rgba(250,250,249,.98);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:18px 24px 22px;gap:18px;border-bottom:1px solid var(--line);transform:translateY(-140%);transition:transform .35s cubic-bezier(.2,.7,.2,1);z-index:99}
+  .nav-links.open{transform:none}
+  .nav-links a{font-size:16px}
+}
 
 /* ---------- HERO (dark) ---------- */
 .hero{min-height:100vh;background:var(--dark);color:#f5f5f4;display:flex;align-items:center;position:relative;overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(600px 400px at 85% 15%,rgba(194,65,12,.16),transparent 60%),radial-gradient(500px 380px at 10% 90%,rgba(194,65,12,.10),transparent 60%)}
 .hero-grid{position:absolute;inset:0;opacity:.07;background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%)}
-.hero-inner{position:relative;padding:120px 0 80px;display:grid;grid-template-columns:1.4fr .8fr;gap:48px;align-items:center}
-.avatar-wrap{position:relative;width:112px;height:112px;margin-bottom:26px}
+.hero-inner{position:relative;padding:150px 24px 110px;max-width:840px;margin:0 auto;text-align:center}
+.avatar-wrap{position:relative;width:118px;height:118px;margin:0 auto 30px}
 .avatar{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid var(--accent);box-shadow:0 0 0 8px rgba(194,65,12,.15);display:block}
 .avatar-fallback{position:absolute;inset:0;border-radius:50%;background:var(--dark-2);border:3px solid var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:36px;color:var(--accent);box-shadow:0 0 0 8px rgba(194,65,12,.15)}
 .eyebrow{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:10px;margin-bottom:22px}
-.eyebrow::before{content:"";width:34px;height:1px;background:var(--accent)}
-.hero h1{font-size:clamp(44px,7vw,84px);font-weight:700;color:#fff}
-.hero h1 em{font-style:italic;color:var(--accent)}
-.typeline{font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,22px);color:#a8a8ad;margin:20px 0 10px;min-height:1.6em}
-.caret{display:inline-block;width:10px;height:1.1em;background:var(--accent);vertical-align:-0.15em;margin-left:3px;animation:blink 1s steps(1) infinite}
+.hero .eyebrow{justify-content:center}
+.caret{display:inline-block;width:2px;height:1.05em;background:var(--accent);vertical-align:-0.12em;margin-left:4px;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
-.hero p.lead{color:#c9c9cd;max-width:520px;font-size:17px;font-weight:300;margin-bottom:34px}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--accent)}
+.hero h1{font-size:clamp(44px,7vw,80px);font-weight:700;color:#fff}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.typeline{font-family:'JetBrains Mono',monospace;font-size:clamp(15px,2.2vw,19px);color:#c9c9cd;margin:24px auto 14px;max-width:560px}
+.hero p.lead{color:#a8a8ad;max-width:520px;font-size:16px;font-weight:300;margin:0 auto 36px}
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
 .btn.light{background:#fff;color:var(--ink);border-color:#fff}
 .btn.light:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 .btn.outline{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
 .btn.outline:hover{border-color:#fff;background:rgba(255,255,255,.08)}
-.hero-card{background:var(--dark-2);border:1px solid rgba(255,255,255,.09);border-radius:var(--radius);padding:26px;font-family:'JetBrains Mono',monospace;font-size:13px;color:#b9b9bf;box-shadow:0 30px 60px rgba(0,0,0,.45)}
-.hero-card .bar{display:flex;gap:7px;margin-bottom:18px}
-.hero-card .dot{width:11px;height:11px;border-radius:50%}
-.hero-card .code-line{margin-bottom:10px;opacity:.9}
-.hero-card .k{color:#f97316}.hero-card .s{color:#a5b4fc}.hero-card .c{color:#6b6b72}
-@media(max-width:860px){.hero-inner{grid-template-columns:1fr}.hero-card{max-width:420px}}
 
 /* ---------- SCROLL REVEAL ---------- */
 .reveal{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
@@ -161,6 +166,28 @@ section{padding:110px 0}
 .soc svg{width:17px;height:17px}
 footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding:26px 0;text-align:center;color:#77777d;font-size:13px;font-family:'JetBrains Mono',monospace}
 
+.plist-label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:30px 0 14px;display:flex;align-items:center;gap:10px}
+.plist-label::after{content:"";flex:1;height:1px;background:var(--line)}
+.plist-label.first{margin-top:0}
+.plist-label .ldot{display:inline-block;width:9px;height:9px;border-radius:50%}
+.plist-label .ldot.live{background:var(--accent)}
+.plist-label .ldot.dev{background:#c9c9c4}
+
+.p-row{display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:12px;transition:transform .2s,box-shadow .2s,border-color .2s}
+.p-row:hover{transform:translateX(5px);box-shadow:0 12px 26px rgba(17,17,19,.08);border-color:#d6d6d1}
+.p-row .st{min-width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.p-row .st.live{background:var(--accent);box-shadow:0 0 0 4px rgba(194,65,12,.14)}
+.p-row .st.dev{background:#d4d4d0}
+.p-row .info{min-width:0;flex:1}
+.p-row .nm{font-weight:700;font-size:17px;font-family:'Playfair Display',serif}
+.p-row .nm small{font-family:'JetBrains Mono',monospace;font-weight:400;font-size:11px;color:var(--ink-soft);margin-left:10px;letter-spacing:.05em}
+.p-row .ds{color:var(--ink-soft);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:560px}
+.p-row .go{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;white-space:nowrap;flex-shrink:0}
+.p-row .go.live{color:var(--accent)}
+.p-row .go.dev{color:var(--ink-soft)}
+.p-row .go:hover{text-decoration:underline}
+@media(max-width:700px){.p-row{flex-wrap:wrap}.p-row .ds{white-space:normal;max-width:100%}.p-row .go{width:100%;margin-top:4px}}
+
 .act-row{display:flex;align-items:baseline;gap:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin-bottom:12px;transition:transform .2s,box-shadow .2s}
 .act-row:hover{transform:translateX(4px);box-shadow:0 10px 22px rgba(17,17,19,.07)}
 .act-row .dot{min-width:9px;height:9px;border-radius:50%;background:var(--accent);align-self:center}
@@ -180,8 +207,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding
   body{background:#fff}
   .hero{min-height:auto;background:#fff;color:#111;padding:40px 0}
   .hero h1,.hero h2,.contact h2{color:#111}
-  .hero p.lead,.typeline,.hero-card .code-line,.contact p{color:#444}
-  .hero-card{background:#fff;border:1px solid #ddd;color:#333;box-shadow:none}
+  .hero p.lead,.typeline,.contact p{color:#444}
   .hero::before,.hero-grid{display:none}
   .hero-inner{grid-template-columns:1fr;padding:0}
   .avatar,.avatar-fallback{box-shadow:none;border-color:#bbb}
@@ -209,10 +235,13 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding
       <a href="#education">Education</a>
       <a href="#contact">Contact</a>
     </div>
-    <button class="btn" onclick="window.print()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
-      Download CV
-    </button>
+    <div style="display:flex;align-items:center;gap:6px">
+      <button class="btn" onclick="window.print()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
+        Download CV
+      </button>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
   </div>
 </nav>
 
@@ -220,33 +249,20 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding
 <header class="hero">
   <div class="hero-grid"></div>
   <div class="container hero-inner">
-    <div>
       <!-- ====== PHOTO: change your picture by uploading/replacing "ac.jpg"
-           in your GitHub repo folder. No code editing needed. If ac.jpg is
-           missing, your initials "OO" show automatically. ====== -->
+           in your GitHub repo folder. No code editing needed. ====== -->
       <div class="avatar-wrap">
         <img class="avatar" src="ac.jpg" alt="Omogbemi Oluwagbenga Ayobami"
              onerror="this.style.display='none';document.getElementById('avatar-fb').style.display='flex'">
         <div class="avatar-fallback" id="avatar-fb" style="display:none">OO</div>
       </div>
-      <div class="eyebrow">Software Engineer — Lagos, Nigeria</div>
+      <div class="eyebrow">Software Engineer · Lagos, Nigeria</div>
       <h1>Omogbemi<br>Oluwagbenga <em>Ayobami</em></h1>
-      <div class="typeline"><span id="typed"></span><span class="caret"></span></div>
-      <p class="lead">I build clean, functional software and document the journey — every project, every skill, every milestone. This site is my living CV.</p>
-      <div class="hero-cta">
+      <p class="typeline"><span id="typed">I build useful things for the web — and I keep an honest record of the journey: every project, every skill, every step.</span><span class="caret"></span></p>
+      <div class="hero-cta" style="justify-content:center">
         <a href="#projects" class="btn light">View my work</a>
         <a href="#contact" class="btn outline">Get in touch</a>
       </div>
-    </div>
-    <div class="hero-card">
-      <div class="bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span></div>
-      <div class="code-line"><span class="c">// engineer.js</span></div>
-      <div class="code-line"><span class="k">const</span> engineer = {</div>
-      <div class="code-line">&nbsp;&nbsp;name: <span class="s">"Omogbemi O.A."</span>,</div>
-      <div class="code-line">&nbsp;&nbsp;role: <span class="s">"Software Engineer"</span>,</div>
-      <div class="code-line">&nbsp;&nbsp;location: <span class="s">"Nigeria"</span>,</div>
-      <div class="code-line">&nbsp;&nbsp;motto: <span class="s">"Ship. Learn. Repeat."</span></div>
-      <div class="code-line">};</div>
     </div>
   </div>
 </header>
@@ -254,12 +270,12 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding
 <!-- ================= ABOUT ================= -->
 <section id="about">
   <div class="container">
-    <div class="sec-head reveal"><div class="eyebrow">01 — About</div><h2>The engineer behind the code</h2></div>
+    <div class="sec-head reveal"><div class="eyebrow">01 — About</div><h2>About me</h2></div>
     <div class="about-grid">
       <div class="reveal d1">
         <!-- EDIT: write your real bio here -->
         <p class="big">I'm a software engineer from Nigeria who turns ideas into working products — from <em>fashion e-commerce</em> to web tools. I believe in learning in public and letting the work speak.</p>
-        <p style="margin-top:22px;color:var(--ink-soft);font-size:16px">Currently deepening my skills in web development, databases, and deployment — while shipping real projects along the way. Every line below is updated as I grow.</p>
+        <p style="margin-top:22px;color:var(--ink-soft);font-size:16px">Currently going deeper into web development, databases and deployment — shipping real projects along the way.</p>
       </div>
       <div class="about-facts">
         <!-- EDIT: update these numbers as you grow -->
@@ -275,7 +291,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding
 <!-- ================= SKILLS ================= -->
 <section id="skills" class="alt">
   <div class="container">
-    <div class="sec-head reveal"><div class="eyebrow">02 — Skills</div><h2>My toolbox, honestly rated</h2><p>Percentages reflect how confident I feel — they go up as I practice. This is a tracker, not a flex.</p></div>
+    <div class="sec-head reveal"><div class="eyebrow">02 — Skills</div><h2>My toolbox, honestly rated</h2><p>What I build with, and how comfortable I am with each. The bars move as I do.</p></div>
     <div class="skills-wrap">
       <!-- EDIT: skill names + levels (change style="--w:X%" number) -->
       <div class="skill-col reveal">
@@ -303,7 +319,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding
 <!-- ================= LIVE GITHUB (auto-tracked) ================= -->
 <section id="live">
   <div class="container">
-    <div class="sec-head reveal"><div class="eyebrow">03 — Live Activity</div><h2>What I've been up to</h2><p>Recent commits, pushes and new repos — pulled live from my GitHub. Refreshes itself every visit.</p></div>
+    <div class="sec-head reveal"><div class="eyebrow">03 — Live Activity</div><h2>What I've been up to</h2><p>A live window into my GitHub — code uploads, new projects, as they happen.</p></div>
     <div class="about-facts" style="grid-template-columns:repeat(4,1fr)">
       <div class="fact reveal"><div class="num" id="gh-repos">–</div><div class="lbl">Public Repos</div></div>
       <div class="fact reveal d1"><div class="num" id="gh-followers">–</div><div class="lbl">Followers</div></div>
@@ -317,42 +333,18 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding
 <!-- ================= PROJECTS ================= -->
 <section id="projects" class="alt">
   <div class="container">
-    <div class="sec-head reveal"><div class="eyebrow">04 — Projects</div><h2>Things I've built</h2><p>Real, shipped work. Each one taught me something new.</p><p style="font-family:'JetBrains Mono',monospace;font-size:12px;margin-top:10px">💡 these cards generate automatically from my GitHub — each repo's description is edited on GitHub (repo → ⚙️ About)</p></div>
-    <div class="proj-grid">
-      <!-- EDIT: replace with your real projects -->
-      <div class="proj reveal">
-        <span class="tag">E-Commerce · Live</span>
-        <h3>Adéluxe</h3>
-        <p>A Nigerian fashion boutique website — 3 static pages on GitHub Pages with a Supabase product backend and a private mobile admin page. Built entirely from an Android phone.</p>
-        <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Supabase</span><span class="chip">GitHub Pages</span></div>
-        <a class="plink" href="https://shop-websitedemo.github.io/Adeluxe/" target="_blank">Visit live site →</a>
-      </div>
-      <div class="proj reveal d1">
-        <span class="tag">Portfolio · Live</span>
-        <h3>Personal CV Website</h3>
-        <p>This very site — a living CV with animated skill tracking, auto-pulled GitHub activity, a milestone timeline, and one-click PDF export. Designed to grow with my career.</p>
-        <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">GitHub API</span></div>
-        <a class="plink" href="#" onclick="return false">You are here →</a>
-      </div>
-      <!-- TEMPLATE for your next project — duplicate this block:
-      <div class="proj reveal">
-        <span class="tag">Category</span>
-        <h3>Project Name</h3>
-        <p>Description of what it does and what you learned.</p>
-        <div class="chips"><span class="chip">Tech1</span></div>
-        <a class="plink" href="URL" target="_blank">Visit →</a>
-      </div>
-      -->
-    </div>
-    <!-- AUTO-PROJECTS: the cards below are generated from your GitHub repos automatically. No code edits needed. -->
-    <div id="auto-projects" class="proj-grid" style="margin-top:22px"></div>
+    <div class="sec-head reveal"><div class="eyebrow">04 — Things I've built</div><h2>Finished work, and what's next</h2><p><span style="color:var(--accent)">●</span> live · <span style="color:#c4c4be">○</span> in progress</p></div>
+    <div class="plist-label first"><span class="ldot live"></span>Live products — click to visit</div>
+    <div id="live-projects" class="plist"></div>
+    <div class="plist-label"><span class="ldot dev"></span>In progress — code available</div>
+    <div id="dev-projects" class="plist"></div>
   </div>
 </section>
 
 <!-- ================= JOURNEY / TIMELINE ================= -->
 <section id="journey">
   <div class="container">
-    <div class="sec-head reveal"><div class="eyebrow">05 — Journey</div><h2>Growth timeline</h2><p>Big milestones, newest first. The section above tracks daily activity automatically — this one is for the highlights.</p></div>
+    <div class="sec-head reveal"><div class="eyebrow">05 — Journey</div><h2>Growth timeline</h2><p>Highlights of the journey so far — newest first.</p></div>
     <div class="timeline">
       <!-- EDIT: add new milestones at the TOP of this list, newest first -->
       <div class="tl-item reveal">
@@ -417,26 +409,26 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding
   </div>
 </section>
 
-<footer>© 2026 Omogbemi Oluwagbenga Ayobami · designed & built by hand · updated as I grow</footer>
+<footer>© 2026 Omogbemi Oluwagbenga Ayobami</footer>
 <button id="top" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
-/* Typing animation */
+
+/* Typewriter — types the tagline once, words stay */
 (function(){
-  const phrases = ["Software Engineer","Frontend Developer","Lifelong Learner","Problem Solver","Builder from Nigeria"];
   const el = document.getElementById('typed');
-  let pi=0, ci=0, deleting=false;
-  function tick(){
-    const p = phrases[pi];
-    el.textContent = p.slice(0, ci);
-    let delay = deleting ? 40 : 85;
-    if(!deleting && ci === p.length){ delay = 1600; deleting = true; }
-    else if(deleting && ci === 0){ deleting = false; pi = (pi+1)%phrases.length; delay = 350; }
-    else ci += deleting ? -1 : 1;
-    setTimeout(tick, delay);
-  }
-  tick();
+  const full = el.textContent;
+  el.textContent = '';
+  let ci = 0;
+  (function tick(){
+    if(ci <= full.length){
+      el.textContent = full.slice(0, ci);
+      ci++;
+      setTimeout(tick, 45);
+    }
+  })();
 })();
+
 
 /* Scroll reveal */
 const io = new IntersectionObserver(entries=>{
@@ -498,8 +490,10 @@ fetch('https://api.github.com/users/' + GH_USER + '/events/public?per_page=60')
     events.forEach(ev => {
       let txt = '', msg = '', repo = ev.repo ? ev.repo.name.split('/')[1] : '';
       if(ev.type === 'PushEvent'){
-        const n = ev.payload.size || (ev.payload.commits || []).length;
-        txt = 'Pushed <b>' + n + ' commit' + (n === 1 ? '' : 's') + '</b> to <span class="repo"></span>';
+        const n = ev.payload.distinct_size || ev.payload.size || (ev.payload.commits || []).length;
+        txt = n
+          ? 'Pushed <b>' + n + ' commit' + (n === 1 ? '' : 's') + '</b> to <span class="repo"></span>'
+          : 'Pushed to <span class="repo"></span>';
         const c = (ev.payload.commits || [])[0];
         if(c) msg = c.message.split('\n')[0];
         if(seen.includes('push' + repo)) return;
@@ -531,44 +525,63 @@ fetch('https://api.github.com/users/' + GH_USER + '/events/public?per_page=60')
     if(wrap) wrap.innerHTML = '<div class="act-row"><span class="dot"></span><div class="txt">Activity feed unavailable offline — the stats above still tell the story.</div></div>';
   });
 
-/* Auto-generate "Things I've built" cards from the same repos */
+/* Auto-generate the project lists from GitHub repos */
+function renderRow(r, list){
+  // live = GitHub Pages site OR a Website link set on the repo (Play Store, App Store, demo...)
+  const pagesUrl = r.has_pages ? 'https://' + GH_USER + '.github.io/' + r.name + '/' : null;
+  const live = pagesUrl || (r.homepage || null);
+  const row = document.createElement('div');
+  row.className = 'p-row';
+  row.innerHTML =
+    '<span class="st ' + (live ? 'live' : 'dev') + '"></span>' +
+    '<div class="info"><div class="nm"></div><div class="ds"></div></div>' +
+    '<a class="go ' + (live ? 'live' : 'dev') + '" target="_blank" rel="noopener"></a>';
+  row.querySelector('.nm').textContent = r.name;
+  const lang = r.language ? ' · ' + r.language : '';
+  const when = new Date(r.updated_at).toLocaleDateString('en-GB', {month:'short', year:'numeric'});
+  const small = document.createElement('small');
+  small.textContent = when + lang;
+  row.querySelector('.nm').appendChild(small);
+  row.querySelector('.ds').textContent = r.description || 'A project from my GitHub — description coming soon.';
+  const go = row.querySelector('.go');
+  if(live){
+    go.href = live;
+    // apps & external demos get a different label than plain websites
+    go.textContent = pagesUrl ? 'Visit live site →' : (r.homepage ? 'Open product →' : 'Visit live site →');
+  }
+  else { go.href = r.html_url; go.textContent = 'View code →'; }
+  list.appendChild(row);
+}
+
 fetch('https://api.github.com/users/' + GH_USER + '/repos?per_page=100&sort=updated')
   .then(r => r.json())
   .then(repos => {
     if(!Array.isArray(repos)) return;
-    const grid = document.getElementById('auto-projects');
-    repos.forEach(r => {
-      const card = document.createElement('div');
-      card.className = 'proj';
-      const live = r.has_pages ? 'https://' + GH_USER + '.github.io/' + r.name + '/' : null;
-      card.innerHTML =
-        '<span class="tag">GitHub Project' + (live ? ' · Live' : '') + '</span>' +
-        '<h3></h3>' +
-        '<p></p>' +
-        '<div class="chips"></div>' +
-        '<div class="plinks" style="display:flex;gap:18px;flex-wrap:wrap"></div>';
-      card.querySelector('h3').textContent = r.name;
-      card.querySelector('p').textContent = r.description || 'A project from my GitHub — description coming soon.';
-      if(r.language){
-        const c = document.createElement('span');
-        c.className = 'chip'; c.textContent = r.language;
-        card.querySelector('.chips').appendChild(c);
-      }
-      const links = card.querySelector('.plinks');
-      const repoLink = document.createElement('a');
-      repoLink.className = 'plink'; repoLink.target = '_blank'; repoLink.rel = 'noopener';
-      repoLink.href = r.html_url; repoLink.textContent = 'View repo →';
-      links.appendChild(repoLink);
-      if(live){
-        const liveLink = document.createElement('a');
-        liveLink.className = 'plink'; liveLink.target = '_blank'; liveLink.rel = 'noopener';
-        liveLink.href = live; liveLink.textContent = '● Visit live site →';
-        links.appendChild(liveLink);
-      }
-      grid.appendChild(card);
-    });
+    const liveList = document.getElementById('live-projects');
+    const devList = document.getElementById('dev-projects');
+    repos.forEach(r => renderRow(r, r.has_pages ? liveList : devList));
+    // hide the "In progress" group entirely if everything is live
+    if(!devList.children.length){
+      devList.style.display = 'none';
+      devList.previousElementSibling.style.display = 'none';
+    }
   })
-  .catch(() => {});
+  .catch(() => {
+    const list = document.getElementById('live-projects');
+    if(list) list.innerHTML = '<div class="p-row"><span class="st dev"></span><div class="info"><div class="nm">List unavailable offline — try refreshing.</div></div></div>';
+  });
+
+/* Mobile menu */
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.querySelector('.nav-links');
+menuBtn.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+  menuBtn.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  navLinks.classList.remove('open');
+  menuBtn.classList.remove('open');
+}));
 
 /* Back-to-top button */
 const topBtn = document.getElementById('top');
